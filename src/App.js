@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Link } from "react-router-dom";
 import About from "./About";
 import Home from "./Home";
-import Profile from "./Profile";
+import Profiles from "./Profiles";
 import HistorySample from "./HistorySample";
 
 const App = () => {
@@ -27,10 +27,22 @@ const App = () => {
       </ul>
 
       <hr />
-      <Route path="/" component={Home} exact={true} />
-      <Route path={["/about", "/info"]} component={About} />
-      <Route path="/profiles/:username" component={Profiles} />
-      <Route path="/history" compoent={HistorySample} />
+
+      <switch>
+        <Route path="/" component={Home} exact={true} />
+        <Route path={["/about", "/info"]} component={About} />
+        <Route path="/profiles/:username" component={Profiles} />
+        <Route path="/history" compoent={HistorySample} />
+
+        <Route
+          render={({ location }) => (
+            <div>
+              <h2>이 페이지는 존재하지 않습니다</h2>
+              <p>{location.pathname}</p>
+            </div>
+          )}
+        />
+      </switch>
     </div>
   );
 };
